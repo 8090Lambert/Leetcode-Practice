@@ -20,16 +20,23 @@ function isPalindrome($x) {
 
 function isPalindrome1($x)
 {
-    
-
-}
-
-
-class A 
-{
-    public function __construct()
-    {
-
+    if ($x < 0 || ($x % 10 == 0 && $x != 0)) {
+        return 0;
     }
+    $digit = strlen($x);
+    $times = $digit / 2;
+    $target = 0;
+    $begin = 0;
+
+    while ($begin <= $times) {
+        $target = $target * 10 + $x % 10;
+        $x /= 10;
+        $begin++;
+    }
+
+    
+    //return $target == sprintf('%.1f', $x * 10);
 }
-echo isPalindrome(121);
+
+
+echo isPalindrome1(121);
