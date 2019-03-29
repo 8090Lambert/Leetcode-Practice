@@ -1,11 +1,7 @@
 package main
 
-import (
-	"fmt"
-
-	"./maxSubArray"
-)
+import lastword "./lengthOfLastWord"
 
 func main() {
-	fmt.Println(maxSubArray.MainCopy([]int{-2, 1, -3, 4, -1, 2, 1, -5, 4}))
+	lastword.LengthOfLastWord("a ")
 }
