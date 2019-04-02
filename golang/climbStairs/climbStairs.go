@@ -27,3 +27,17 @@ func ClimbStairs1(n int) int {
 
 	return third
 }
+
+
+func Rabbit(n int) int {
+	first := 1
+	second := 1
+	sum := 0
+	for i:=3; i<=n;i++  {
+		sum = first + second
+		first = second
+		second = sum
+	}
+
+	return sum
+}
