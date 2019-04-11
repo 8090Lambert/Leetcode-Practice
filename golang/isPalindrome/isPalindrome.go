@@ -1,8 +1,8 @@
 package isPalindrome
 
 import (
-	"fmt"
 	"strconv"
+	"strings"
 )
 
 func IsPalindrome(x int) bool {
@@ -21,30 +21,54 @@ func IsPalindrome(x int) bool {
 }
 
 func IsPalindrome1(x int) bool {
-	if x < 0 || (x % 10 == 0 && x != 0) {
+	if x < 0 || (x%10 == 0 && x != 0) {
 		return false
 	}
-
-	begin := 0
-	length := len(strconv.Itoa(x))
-	var times int
-	if length % 2 == 1 {
-		times = length / 2 + 1
+	begin, times, length := 0, 0, len(strconv.Itoa(x))
+	if length%2 == 1 {
+		times = length/2 + 1
 	} else {
 		times = length / 2
 	}
-
 	res := 0
-	//fmt.Println(begin, times)
-	for begin < int(times) {
+	for begin < times {
 		res = res*10 + x%10
-		if begin + 1 != times {
+		if begin+1 != times {
 			x /= 10
 		}
 		begin++
 	}
 
-	fmt.Println(res, x)
-	fmt.Println(res == x || res == x / 10)
-	return res == x || res == x / 10
+	return res == x || res == x/10
+}
+
+// 回文字符串
+func IsPalindrome2(s string) bool {
+	if len(s) == 0 {
+		return true
+	}
+	strArr := strings.Split(strings.ToLower(s), "")
+	start := 0
+	end := len(strArr) - 1
+	for start < end {
+		for isValid(strArr[start]) == false && start < end {
+			start++
+		}
+		for isValid(strArr[end]) == false && start < end {
+			end--
+		}
+		if strArr[start] == strArr[end] {
+			start++
+			end--
+			continue
+		} else {
+			return false
+		}
+	}
+
+	return true
+}
+
+func isValid(s string) bool {
+	return (s >= "a" && s <= "z") || (s >= "0" && s <= "9")
 }
