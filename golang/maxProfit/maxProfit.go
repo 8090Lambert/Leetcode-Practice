@@ -23,10 +23,7 @@ func MaxProfit1(prices []int) int {
 	if count <= 0 {
 		return 0
 	}
-
-	earning := 0
-	max := 0
-	min := 0
+	max, min, earning := 0, 0, 0
 	for index := 1; index < count; index++ {
 		if prices[index] < prices[min] {
 			min = index
@@ -34,14 +31,11 @@ func MaxProfit1(prices []int) int {
 		if prices[index] > prices[min] {
 			max = index
 		}
-
 		if max > min {
 			earning += prices[max] - prices[min]
 			max = index
 			min = index
 		}
 	}
-
-	//fmt.Println(earning)
 	return earning
 }
