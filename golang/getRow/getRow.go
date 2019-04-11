@@ -5,20 +5,17 @@ func GetRow(rowIndex int) []int {
 	if rowIndex == 0 {
 		return append(res, 1)
 	}
-	if rowIndex == 1 {
-		return append(res, 1, 1)
-	}
 
 	half := rowIndex / 2
-	for i := 0; i < rowIndex+1; i++ {
-		if i == 0 {
+	for index := 0; index <= rowIndex; index++ {
+		if index == 0 {
 			res = append(res, 1)
 			continue
 		}
-		if i > half { // 超过一半开始对称
-			res = append(res, res[rowIndex-i])
+		if index > half {
+			res = append(res, res[rowIndex-index])
 		} else {
-			tmp := 1 * res[i-1] * (rowIndex - (i - 1)) / i
+			tmp := 1 * res[index-1] * (rowIndex - (index - 1)) / index
 			res = append(res, tmp)
 		}
 	}
