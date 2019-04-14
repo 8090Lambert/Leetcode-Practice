@@ -1,7 +1,7 @@
 package main
 
-import lastword "./lengthOfLastWord"
+import lastword "./isSymmetric"
 
 func main() {
-	lastword.LengthOfLastWord("a ")
+	isSymmetric.IsSymmetric("a ")
 }
