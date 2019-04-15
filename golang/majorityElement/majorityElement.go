@@ -1,7 +1,5 @@
 package majorityElement
 
-import "fmt"
-
 func MajorityElement(nums []int) int {
 	count := 0
 	ret := nums[0]
