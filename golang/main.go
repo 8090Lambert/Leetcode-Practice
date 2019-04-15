@@ -1,7 +1,11 @@
 package main
 
-import lastword "./isSymmetric"
+import (
+	majorityElement "./majorityElement"
+	"fmt"
+)
 
 func main() {
-	isSymmetric.IsSymmetric("a ")
+	a := []int{3,3,4}
+	fmt.Println(majorityElement.MajorityElement(a))
 }
