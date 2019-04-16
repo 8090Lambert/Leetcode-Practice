@@ -1,12 +1,10 @@
 package main
 
 import (
-	"fmt"
-
-	majorityElement "./majorityElement"
+	rotate "./rotate"
 )
 
 func main() {
-	a := []int{3, 3, 4}
-	fmt.Println(majorityElement.MajorityElement1(a))
+	a := []int{1, 2, 3, 4, 5, 6, 7}
+	rotate.Rotate(a, 3)
 }
