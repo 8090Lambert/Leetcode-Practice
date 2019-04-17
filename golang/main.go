@@ -1,10 +1,12 @@
 package main
 
 import (
-	rotate "./rotate"
+	reverseBits "./reverseBits"
 )
 
 func main() {
-	a := []int{1, 2, 3, 4, 5, 6, 7}
-	rotate.Rotate(a, 3)
+	var a uint32
+	a = 43261596
+
+	reverseBits.ReverseBits(a)
 }
