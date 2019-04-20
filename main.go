@@ -1,10 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"./medium/longestPalindrome"
+	"fmt"
+)
 
 func main() {
 	//a := "a"
 	//fmt.Println(a + "c")
-	a := make([]int, 128)
-	fmt.Println(a[128])
+	a := "babad"
+	fmt.Println(longestPalindrome.LongestPalindrome(a))
 }
