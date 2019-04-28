@@ -26,3 +26,31 @@ func isBalance (root *TreeNode) int {
 	}
 	return -1
 }
+
+
+// method 2
+func isBalancedOptimize(root *TreeNode) bool {
+	if root == nil {
+		return true
+	}
+
+	depth := 0
+	return optimize(root, &depth) != 0
+}
+
+func optimize(root *TreeNode, depth *int) int {
+	if root == nil {
+		*depth = 0
+		return 1
+	}
+	var left, right int
+	if optimize(root.Left, &left) != 0 && optimize(root.Right, &right) != 0 {
+		gap := left-right
+		if gap <= 1 && gap >= -1 {
+			*depth = int(math.Max(float64(left), float64(right))) + 1
+			return 1
+		}
+	}
+
+	return 0
+}
