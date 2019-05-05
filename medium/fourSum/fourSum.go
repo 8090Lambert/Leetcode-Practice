@@ -1,7 +1,6 @@
 package fourSum
 
 import (
-	"fmt"
 	"sort"
 	"strconv"
 )
@@ -26,12 +25,9 @@ func FourSum(nums []int, target int) [][]int {
 			for left < right {
 				sum := nums[k] + nums[left] + nums[right]
 				if sum == newtarget {
-					tmp := []int{nums[index], nums[k], nums[left], nums[right]}
-					sort.Ints(tmp)
-					uniqueFlag := strconv.Itoa(tmp[0]) + strconv.Itoa(tmp[1]) + strconv.Itoa(tmp[2]) + strconv.Itoa(tmp[3])
-					fmt.Println(uniqueMap, tmp)
+					uniqueFlag := strconv.Itoa(nums[index]) + strconv.Itoa(nums[k]) + strconv.Itoa(nums[left]) + strconv.Itoa(nums[right])
 					if _, ok := uniqueMap[uniqueFlag]; !ok {
-						res = append(res, []int{tmp[0], tmp[1], tmp[2], tmp[3]})
+						res = append(res, []int{nums[index], nums[k], nums[left], nums[right]})
 						uniqueMap[uniqueFlag] = uniqueFlag
 					}
 					left++
