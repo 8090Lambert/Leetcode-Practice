@@ -1,13 +1,14 @@
 package main
 
 import (
-	"./medium/longestPalindrome"
 	"fmt"
+
+	"leetcode/medium/nextPermutation"
 )
 
 func main() {
-	//a := "a"
-	//fmt.Println(a + "c")
-	a := "babad"
-	fmt.Println(longestPalindrome.LongestPalindrome(a))
+	fmt.Println("begin")
+	a := []int{1, 3, 4, 56}
+	nextPermutation.NextPermutation(a)
+	fmt.Println("end")
 }
