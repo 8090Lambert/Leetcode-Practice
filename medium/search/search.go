@@ -1,10 +1,10 @@
 package search
 
 func search(nums []int, target int) int {
-	return searchM(nums, 0, len(nums)-1, target)
+	return searchLoop(nums, 0, len(nums)-1, target)
 }
 
-func searchM(nums []int, left, right, target int) int {
+func searchRecursion(nums []int, left, right, target int) int {
 	if left > right {
 		return -1
 	}
@@ -16,15 +16,44 @@ func searchM(nums []int, left, right, target int) int {
 
 	if nums[mid] < nums[right] {
 		if nums[mid] < target && target <= nums[right] {
-			return searchM(nums, mid+1, right, target)
+			return searchRecursion(nums, mid+1, right, target)
 		} else {
-			return searchM(nums, left, mid-1, target)
+			return searchRecursion(nums, left, mid-1, target)
 		}
 	} else {
 		if nums[mid] > target && target >= nums[left] {
-			return searchM(nums, left, mid-1, target)
+			return searchRecursion(nums, left, mid-1, target)
 		} else {
-			return searchM(nums, mid+1, right, target)
+			return searchRecursion(nums, mid+1, right, target)
 		}
 	}
+}
+
+func searchLoop(nums []int, left, right, target int) int {
+	if left > right {
+		return -1
+	}
+
+	for left <= right {
+		mid := (left + right) / 2
+		if nums[mid] == target {
+			return mid
+		}
+
+		if nums[mid] < nums[right] {
+			if nums[mid] <= target && target <= nums[right] {
+				left = mid + 1
+			} else {
+				right = mid - 1
+			}
+		} else {
+			if nums[left] <= target && target <= nums[mid] {
+				right = mid - 1
+			} else {
+				left = mid + 1
+			}
+		}
+	}
+
+	return -1
 }
