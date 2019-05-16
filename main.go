@@ -1,14 +1,12 @@
 package main
 
 import (
-	"fmt"
-
-	"leetcode/medium/nextPermutation"
+	"leetcode/medium/combinationSum"
 )
 
 func main() {
-	fmt.Println("begin")
-	a := []int{1, 3, 4, 56}
-	nextPermutation.NextPermutation(a)
-	fmt.Println("end")
+	//fmt.Println("begin")
+	a := []int{7, 3, 2}
+
+	combinationSum.CombinationSum(a, 18)
 }
