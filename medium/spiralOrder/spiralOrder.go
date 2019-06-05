@@ -32,4 +32,6 @@ func SpiralOrder(matrix [][]int) []int {
 		rowStart++
 		rowEnd--
 	}
+
+	return res
 }
