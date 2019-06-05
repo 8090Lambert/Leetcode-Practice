@@ -1,6 +1,6 @@
 package myPow
 
-func myPow(x float64, n int) float64 {
+func MyPow(x float64, n int) float64 {
 	N := n
 	if N < 0 {
 		x = 1/x
