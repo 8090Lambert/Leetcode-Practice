@@ -72,3 +72,38 @@ func IsPalindrome2(s string) bool {
 func isValid(s string) bool {
 	return (s >= "a" && s <= "z") || (s >= "0" && s <= "9")
 }
+
+type ListNode struct {
+     Val int
+     Next *ListNode
+}
+
+func isPalindromeList (head *ListNode) bool {
+	if head == nil || head.Next == nil {
+		return true
+	}
+	
+	fast := head
+	slow := head
+	stack := make([]*ListNode, 0)
+	for fast.Next != nil && fast.Next.Next != nil {
+		stack = append(stack, slow)
+		slow = slow.Next
+		fast = fast.Next.Next
+	}
+	
+	if fast.Next != nil {
+		stack = append(stack, slow)
+	}
+	slow = slow.Next
+	
+	mid := slow
+	for i := len(stack) - 1; i >= 0; i-- {
+		if mid.Val != stack[i].Val {
+			return false
+		}
+		mid = mid.Next
+	}
+	
+	return true
+}
