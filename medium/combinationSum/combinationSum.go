@@ -69,3 +69,26 @@ func find2(candidates []int, start, target int, tmp []int, uniqueMap map[string]
 
 	return res
 }
+
+
+func test (candidates []int, target int) [][]int {
+	sort.Ints(candidates)
+	collect := [][]int{}
+	testFind(candidates, 0, target, []int{}, &collect)
+
+	return collect
+}
+
+func testFind (candidates []int, start,target int, tmp []int, res *[][]int) {
+	if target == 0 {
+		*res = append(*res, tmp)
+		return
+	}
+
+	for i := start; i < len(candidates) && target >= candidates[i]; i++ {
+		temp := []int{}
+		temp = append(temp, tmp...)
+		temp = append(temp, candidates[i])
+		testFind(candidates, i, target - candidates[i], temp, res)
+	}
+}
