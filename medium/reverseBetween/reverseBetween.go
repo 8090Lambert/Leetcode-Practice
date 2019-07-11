@@ -25,4 +25,6 @@ func ReverseBetween (head *ListNode, m, n int) *ListNode {
 		prev.Next = tail
 		tail = start.Next
 	}
+
+	return dummy.Next
 }
