@@ -20,7 +20,7 @@ func backTrack (s string, start int, tmp string, res *[]string) {
 		return
 	}
 
-	for i := 1; i < 4; i++ {
+	for i := 0; i < 4; i++ {
 		if len(s) < i {
 			break
 		}
@@ -29,10 +29,9 @@ func backTrack (s string, start int, tmp string, res *[]string) {
 		if val > 255 || len(sub) > 1 && string(sub[0]) == "0" {
 			continue
 		}
-
 		temp := tmp+sub
-		if start != 3 {
-			temp = tmp+sub+"."
+		if start != 3{
+			temp += "."
 		}
 
 		backTrack(s[i:], start+1, temp, res)
