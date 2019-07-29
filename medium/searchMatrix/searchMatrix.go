@@ -6,8 +6,6 @@ func searchMatrix(matrix [][]int, target int) bool {
 	}
 	row, col := len(matrix), len(matrix[0])
 	left, right := 0, row * col - 1
-
-
 	for left <= right {
 		idx := (left + right) / 2
 		if target == matrix[idx/col][idx%col] {
