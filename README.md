@@ -1,3 +1,3 @@
 # Leetcode-Example
 
-Code with personal idea
+Try to practice, then you can do it
