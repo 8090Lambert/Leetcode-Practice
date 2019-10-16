@@ -1,34 +1,43 @@
 package lengthOfLongestSubstring
 
-import "math"
+import (
+	"math"
+)
 
+/**
+	滑动窗口优化，每次找重复字符串的索引位置
+ */
 func LengthOfLongestSubstring(s string) int {
-	count, res := len(s), 0
-	m := make(map[string]int)
-	for index, i := 0, 0; index < count; index++ {
-		if _, ok := m[string(s[index])]; ok {
-			i = int(math.Max(float64(m[string(s[index])]), float64(i)))
+	res, count := 0, len(s)
+	window := map[byte]int{}
+	j := 0
+	for i := 0; i < count; i++ {
+		if _, ok := window[s[i]]; ok{
+			j = int(math.Max(float64(window[s[i]]), float64(j)))
 		}
-		res = int(math.Max(float64(res), float64(index-i+1)))
-		m[string(s[index])] = index + 1
+		res = int(math.Max(float64(res), float64(i-j+1)))
+		window[s[i]] = i+1
 	}
 
 	return res
 }
 
-func LengthOfLongestSubstring1(s string) int {
-	sArr := make(map[byte]byte)
-	count := len(s)
-	ret, start, end := 0, 0, 0
+/**
+	滑动窗口，每次比较end对应的字符串 start - end 之间
+ */
+func lengthOfLongestSubstringWithWindow(s string) int {
+	res, count := 0, len(s)
+	windows := map[byte]struct{}{}
+	start, end := 0, 0
 	for start < count && end < count {
-		if _, ok := sArr[s[end]]; !ok {
-			sArr[s[end]] = s[end]
+		if _, ok := windows[s[end]]; !ok {
+			windows[s[end]] = struct{}{}
 			end++
-			ret = int(math.Max(float64(ret), float64(end-start)))
+			res = int(math.Max(float64(res), float64(end - start)))
 		} else {
-			delete(sArr, s[start])
+			delete(windows, s[start])
 			start++
 		}
 	}
-	return ret
+	return res
 }
