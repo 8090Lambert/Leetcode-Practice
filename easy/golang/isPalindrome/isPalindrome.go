@@ -21,25 +21,21 @@ func IsPalindrome(x int) bool {
 }
 
 func IsPalindrome1(x int) bool {
-	if x < 0 || (x%10 == 0 && x != 0) {
+	if x < 0 {
 		return false
 	}
-	begin, times, length := 0, 0, len(strconv.Itoa(x))
-	if length%2 == 1 {
-		times = length/2 + 1
-	} else {
-		times = length / 2
-	}
-	res := 0
-	for begin < times {
-		res = res*10 + x%10
-		if begin+1 != times {
-			x /= 10
-		}
+	begin, length := 0, len(strconv.Itoa(x))
+	res, count := 0, length / 2
+	for begin < count {
+		res = res * 10 + x % 10
+		x /= 10
 		begin++
 	}
+	if length & 1 == 1 {
+		x /= 10
+	}
 
-	return res == x || res == x/10
+	return x == res
 }
 
 // 回文字符串
