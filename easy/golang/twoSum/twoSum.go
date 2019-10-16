@@ -1,15 +1,15 @@
 package twoSum
 
-func TwoSum( numbers []int, target int) []int {
+func twoSum(nums []int, target int) []int {
+	hasMap := make(map[int]int, 0)
 	res := make([]int, 0)
-	sumMap := map[int]int{}
-	for index := 0; index < len(numbers); index++ {
-		need := target - numbers[index]
-		if _, ok := sumMap[need]; ok {
-			res = append(res, index+1, sumMap[need])
-			break;
+	for i := 0; i < len(nums); i++ {
+		need := target - nums[i]
+		if _, ok := hasMap[need]; !ok || len(hasMap) <= 0{
+			hasMap[nums[i]] = i
+			continue
 		}
-		sumMap[numbers[index]] = index+1
+		res = append(res, hasMap[nums[i]], i)
 	}
 
 	return res
