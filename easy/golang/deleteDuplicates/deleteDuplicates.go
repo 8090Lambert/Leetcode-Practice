@@ -5,7 +5,7 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func DeleteDuplicates(head *ListNode) *ListNode {
+func deleteDuplicates (head *ListNode) *ListNode {
 	current := head
 	for current != nil && current.Next != nil {
 		if current.Val == current.Next.Val {
