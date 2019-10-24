@@ -10,34 +10,17 @@ func ClimbStairs(n int) int {
 	}
 }
 
-func ClimbStairs1(n int) int {
-	var third int
+func climbStairs (n int) int {
 	if n == 1 {
 		return 1
 	} else if n == 2 {
 		return 2
-	} else {
-		first, second := 1, 2
-		for i := 3; i <= n; i++ {
-			third = first + second
-			first = second
-			second = third
-		}
 	}
-
-	return third
-}
-
-
-func Rabbit(n int) int {
-	first := 1
-	second := 1
-	sum := 0
-	for i:=3; i<=n;i++  {
+	first, second, sum := 1, 2, 0
+	for i := 3; i <= n; i++ {
 		sum = first + second
 		first = second
 		second = sum
 	}
-
 	return sum
 }
