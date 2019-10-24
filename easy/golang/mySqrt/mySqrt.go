@@ -1,10 +1,28 @@
 package mySqrt
 
-func MySqrt(x int) int {
+func mySqrt(x int) int {
 	result := x
-	for result > x / result {
-		result = (result +  x / result) / 2
+	for result > x /result {
+		result = (result + x/result) / 2
 	}
 
 	return result
+}
+
+func mySqrtTwoSplit(x int) int {
+	if x == 0 {
+		return 0
+	}
+	left := 0
+	right := x
+	for left < right {
+		mid := (left + right+1) >> 1
+		if mid * mid > x {
+			right = mid - 1
+		} else {
+			left = mid
+		}
+	}
+
+	return left
 }
