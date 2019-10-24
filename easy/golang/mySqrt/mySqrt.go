@@ -1,6 +1,9 @@
 package mySqrt
 
 func mySqrt(x int) int {
+	if x == 0 {
+		return 0
+	}
 	result := x
 	for result > x /result {
 		result = (result + x/result) / 2
