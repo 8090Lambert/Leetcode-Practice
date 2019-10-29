@@ -23,7 +23,7 @@ func isSymmetric(root *TreeNode) bool {
 	for len(stack) > 0 {
 		left := stack[0]
 		right := stack[1]
-		stack = stack[2:]
+		stack = append([]*TreeNode{}, stack[2:]...)
 		if left == nil && right == nil {
 			continue
 		} else if left == nil || right == nil {
