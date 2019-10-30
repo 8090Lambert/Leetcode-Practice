@@ -1,6 +1,8 @@
 package isBalanced
 
-import "math"
+import (
+	"math"
+)
 
 type TreeNode struct {
 	Val int
@@ -53,4 +55,31 @@ func optimize(root *TreeNode, depth *int) int {
 	}
 
 	return 0
+}
+
+func isBalanced(root *TreeNode) bool {
+	isBalance := true
+	height(root, &isBalance)
+	return isBalance
+}
+
+func height(node *TreeNode, isBalance *bool) int {
+	if node == nil {
+		return 0
+	}
+	leftHeight := height(node.Left, isBalance)
+	if !(*isBalance) {
+		return -1
+	}
+	rightHeight := height(node.Right, isBalance)
+	if !(*isBalance) {
+		return -1
+	}
+
+	if int(math.Abs(float64(leftHeight - rightHeight))) > 1 {
+		*isBalance = false
+		return -1
+	}
+
+	return int(math.Max(float64(leftHeight), float64(rightHeight))) + 1
 }
