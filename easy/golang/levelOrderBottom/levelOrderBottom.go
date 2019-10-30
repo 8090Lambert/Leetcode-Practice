@@ -30,3 +30,29 @@ func LevelOrderBottom(root *TreeNode) [][]int {
 	
 	return result
 }
+
+
+func levelOrderBottom(root *TreeNode) [][]int {
+	res := make([][]int, 0)
+	if root == nil {
+		return res
+	}
+	stack := []*TreeNode{root}
+	for len(stack) > 0 {
+		levels := make([]*TreeNode, 0)
+		count := len(stack)
+		item := make([]int, 0)
+		for i := 0; i < count; i++ {
+			item = append(item, stack[i].Val)
+			if stack[i].Left != nil {
+				levels = append(levels, stack[i].Left)
+			}
+			if stack[i].Right != nil {
+				levels = append(levels, stack[i].Right)
+			}
+		}
+		stack = levels
+		res = append([][]int{item}, res...)
+	}
+	return res
+}

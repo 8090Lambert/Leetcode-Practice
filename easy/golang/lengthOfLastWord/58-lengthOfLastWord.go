@@ -18,3 +18,21 @@ func LengthOfLastWord(s string) int {
 	}
 	return len(strSlinces[len(strSlinces) - offset])
 }
+
+func lengthOfLastWord(s string) int {
+	if len(s) == 0 {
+		return 0
+	}
+	count := 0
+	for i := len(s)-1; i >= 0; i-- {
+		if s[i] == ' ' && count == 0 {
+			continue
+		} else if s[i] == ' ' && count != 0 {
+			break
+		} else {
+			count++
+		}
+	}
+
+	return count
+}

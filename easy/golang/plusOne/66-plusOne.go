@@ -27,3 +27,32 @@ func PlusOne(digits []int) []int {
 
 	return digits
 }
+
+func plusOne(digits []int) []int {
+	if len(digits) == 0 {
+		return []int{1}
+	}
+	length := len(digits)
+	plus := 0
+	for i := length - 1; i >= 0; i-- {
+		sum := digits[i] + plus
+		if plus == 0 {
+			if i != length - 1 {
+				break
+			}
+			sum += 1
+		}
+		if sum == 10 {
+			plus = 1
+		} else {
+			plus = 0
+		}
+		digits[i] = sum % 10
+	}
+
+	if plus == 1 {
+		digits = append([]int{1}, digits...)
+	}
+
+	return digits
+}
