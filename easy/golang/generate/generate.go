@@ -1,39 +1,17 @@
 package generate
 
-func Generate(numRows int) [][]int {
-	res := make([][]int, 0)
-
-	for i := 0; i < numRows; i++ {
-		tmp := make([]int, 0)
-		for j := 0; j <= i; j++ {
-			if j == 0 || j == i {
-				tmp = append(tmp, 1)
+func generate(numRows int) [][]int {
+	res := make([][]int, 0, numRows)
+	for i := 1; i <= numRows; i++ {
+		item := make([]int, 0, i)
+		for j := 0; j < i; j++ {
+			if j == 0 || j == i-1 {
+				item = append(item, 1)
 			} else {
-				need := res[i-1][j-1] + res[i-1][j]
-				tmp = append(tmp, need)
+				item = append(item, res[i-2][j-1], res[i-2][j])
 			}
 		}
-		res = append(res, tmp)
+		res = append(res, item)
 	}
-
-	return res
-}
-
-func Generate1(numRows int) [][]int {
-	res := make([][]int, 0)
-
-	for i := 0; i < numRows; i++ {
-		tmp := make([]int, 0)
-		for j := 0; j <= i; j++ {
-			if j == 0 || j == i {
-				tmp = append(tmp, 1)
-			} else {
-				need := res[i-1][j] + res[i-1][j-1]
-				tmp = append(tmp, need)
-			}
-		}
-		res = append(res, tmp)
-	}
-
 	return res
 }
