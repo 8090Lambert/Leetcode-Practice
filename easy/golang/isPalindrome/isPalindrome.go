@@ -39,34 +39,36 @@ func IsPalindrome1(x int) bool {
 }
 
 // 回文字符串
-func IsPalindrome2(s string) bool {
+func isPalindromeString(s string) bool {
 	if len(s) == 0 {
 		return true
 	}
-	strArr := strings.Split(strings.ToLower(s), "")
-	start := 0
-	end := len(strArr) - 1
-	for start < end {
-		for isValid(strArr[start]) == false && start < end {
+	s = strings.ToLower(s)
+	count := len(s)
+	start, end := 0, count - 1
+	for start <= end {
+		if !isValidString(s[start]) {
 			start++
-		}
-		for isValid(strArr[end]) == false && start < end {
-			end--
-		}
-		if strArr[start] == strArr[end] {
-			start++
+			continue
+		} else if !isValidString(s[end]) {
 			end--
 			continue
-		} else {
+		}
+		if s[start] != s[end] {
 			return false
 		}
+		start++
+		end--
 	}
-
 	return true
 }
 
-func isValid(s string) bool {
-	return (s >= "a" && s <= "z") || (s >= "0" && s <= "9")
+func isValidString(cell uint8) bool {
+	b := byte(cell)
+	if b >= 'a' && b <= 'z' || b >= '0' && b <= '9' {
+		return true
+	}
+	return false
 }
 
 type ListNode struct {
