@@ -1,40 +1,32 @@
 package maxProfit
 
-func MaxProfit(prices []int) int {
+func maxProfit(prices []int) int {
 	count := len(prices)
-	if count <= 0 {
-		return 0
-	}
-	earning := 0
 	min := prices[0]
-	for index := 1; index < count; index++ {
-		if prices[index] < min {
-			min = prices[index]
-		} else if prices[index]-min > earning {
-			earning = prices[index] - min
+	earning := 0
+	for i := 1; i < count; i++ {
+		if prices[i] < min {
+			min = prices[i]
+		}
+		if prices[i] - min > earning {
+			earning = prices[i] - min
 		}
 	}
-
 	return earning
 }
 
-func MaxProfit1(prices []int) int {
+func maxProfit2(prices []int) int {
 	count := len(prices)
-	if count <= 0 {
-		return 0
-	}
-	max, min, earning := 0, 0, 0
-	for index := 1; index < count; index++ {
-		if prices[index] < prices[min] {
-			min = index
+	min, max, earning := 0, 0, 0
+	for i := 1; i < count; i++ {
+		if prices[i] < prices[min] {
+			min = i
+		} else {
+			max = i
 		}
-		if prices[index] > prices[min] {
-			max = index
-		}
-		if max > min {
-			earning += prices[max] - prices[min]
-			max = index
-			min = index
+		if max > min && prices[max] - prices[min] > 0 {
+			earning += prices[max]-prices[min]
+			max, min = i, i
 		}
 	}
 	return earning
