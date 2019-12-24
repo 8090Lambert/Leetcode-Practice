@@ -1,41 +1,26 @@
-package isPalindrome
+package __isPalindrome
 
 import (
 	"strconv"
 	"strings"
 )
 
-func IsPalindrome(x int) bool {
+func isPalindrome(x int) bool {
 	if x < 0 {
 		return false
 	}
-
-	origin := x
-	var result int
-	for x != 0 {
-		result = result*10 + x%10
-		x /= 10
-	}
-
-	return result == origin
-}
-
-func IsPalindrome1(x int) bool {
-	if x < 0 {
-		return false
-	}
-	begin, length := 0, len(strconv.Itoa(x))
+	length := len(strconv.Itoa(x))
 	res, count := 0, length / 2
-	for begin < count {
+	for count > 0 {
 		res = res * 10 + x % 10
 		x /= 10
-		begin++
+		count--
 	}
-	if length & 1 == 1 {
+	if length & 1 == 1 {	// 奇数长度的中间位不要
 		x /= 10
 	}
 
-	return x == res
+	return res == x
 }
 
 // 回文字符串

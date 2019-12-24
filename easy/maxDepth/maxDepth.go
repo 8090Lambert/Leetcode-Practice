@@ -18,7 +18,32 @@ func MaxDepth(root *TreeNode) int {
 	}
 }
 
-// DFS
+type Node struct {
+	Depth int
+	Val *TreeNode
+}
+func maxDepthDFS(root *TreeNode) int {
+	depth := 0
+	if root == nil {
+		return depth
+	}
+
+	stack := make([]Node, 0)
+	stack = append(stack, Node{Depth:1,Val:root})
+	depth = 0
+	for len(stack) > 0 {
+		current := stack[0]
+		stack = append([]Node{}, stack[1:]...)
+		if current.Val != nil {
+			depth = int(math.Max(float64(depth), float64(current.Depth)))
+			stack = append(stack, Node{Depth:depth+1, Val:current.Val.Left})
+			stack = append(stack, Node{Depth:depth+1, Val:current.Val.Right})
+		}
+	}
+	return depth
+}
+
+// BFS
 func maxDepth(root *TreeNode) int {
 	stack := make([]*TreeNode, 0)
 	if root != nil {

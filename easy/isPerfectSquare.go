@@ -1,4 +1,4 @@
-package golang
+package easy
 
 func isPerfectSquare (num int) bool {
 	if num <= 1 {
