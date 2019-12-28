@@ -1,4 +1,4 @@
-package _1_isValid
+package _0_isValid
 
 func isValid(s string) bool {
 	count := len(s)
