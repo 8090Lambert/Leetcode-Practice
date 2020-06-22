@@ -5,9 +5,6 @@ import (
 )
 
 func reverse(x int) int {
-	if x == 0 {
-		return 0
-	}
 	intMin, intMax := int(math.Pow(-2, 31))-1, int(math.Pow(2, 31)) - 1
 	result := 0
 	for x != 0 {
