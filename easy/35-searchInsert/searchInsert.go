@@ -1,11 +1,10 @@
 package _5_searchInsert
 
 func searchInsert(nums []int, target int) int {
-	count := len(nums)
-	if count == 0 {
+	if len(nums) == 0 {
 		return 0
 	}
-	start, end := 0, count-1
+	start, end := 0, len(nums)-1
 	for start <= end {
 		mid := start + (end-start) / 2
 		if nums[mid] < target {
