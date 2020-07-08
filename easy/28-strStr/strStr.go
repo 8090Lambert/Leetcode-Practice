@@ -6,14 +6,13 @@ func strStr(haystack string, needle string) int {
 		return 0
 	}
 	if hlength < nlength {
-		return - 1
+		return -1
 	}
-	for i := 0; i < hlength-nlength; i++ {
+	for i := 0; i <= hlength-nlength; i++ {
 		if haystack[i:i+nlength] == needle {
 			return i
 		}
 	}
-
 	return -1
 }
 
