@@ -36,3 +36,32 @@ func lengthOfLastWord(s string) int {
 
 	return count
 }
+
+
+
+
+
+
+
+
+
+
+
+func LengthOfLastWordStep(s string) int {
+	length := len(s)
+	if length == 0 {
+		return 0
+	}
+
+	count := 0
+	for i := length - 1; i > -1; i-- {
+		if s[i] == ' ' && count == 0 {
+			continue
+		} else if s[i] == ' ' && count != 0 {
+			break
+		} else {
+			count++
+		}
+	}
+	return count
+}

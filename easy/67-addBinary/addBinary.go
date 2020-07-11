@@ -1,4 +1,4 @@
-package addBinary
+package _7_addBinary
 
 import (
 	"strings"
@@ -96,3 +96,20 @@ func AddBinary(a string, b string) string {
 
 	return result
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
