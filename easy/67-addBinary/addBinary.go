@@ -8,108 +8,39 @@ func addBinary(a string, b string) string {
 	if a == "0" && b == "0" {
 		return "0"
 	}
-	diff := len(a) - len(b)
-	if diff > 0 {
-		b = strings.Repeat("0", diff) + b
+	if len(a) < len(b) {
+		a = strings.Repeat("0", len(b)-len(a)) + a
 	} else {
-		a = strings.Repeat("0", diff*-1) + a
+		b = strings.Repeat("0", len(a)-len(b)) + b
 	}
-	res := make([]byte, len(a), len(a))
-	carry := 0
-	for i := len(a)-1; i >= 0; i-- {
-		if a[i] == 49 && b[i] == 49 {
-			if carry == 1 {
-				res[i] = 49
-			} else {
-				res[i] = 48
-			}
-			carry = 1
-		} else if a[i] == 49 && b[i] == 48 || a[i] == 48 && b[i] == 49 {
-			if carry == 1 {
-				carry = 1
-				res[i] = 48
-			} else {
-				carry = 0
-				res[i] = 49
-			}
-		} else {
-			if carry == 1 {
-				res[i] = 49
-			} else {
-				res[i] = 48
-			}
-			carry = 0
-		}
-	}
-
-	if carry == 1 {
-		res = append([]byte{49}, res...)
-	}
-
-	return string(res)
-}
-
-func AddBinary(a string, b string) string {
-	var result string
-	if a == "0" && b == "0" {
-		return "0"
-	}
-	diff := len(a) - len(b)
-	short := &b
-	if diff < 0 {
-		diff = len(b) - len(a)
-		short = &a
-	}
-	*(short) = strings.Repeat("0", diff) + *(short)
-
-	carry := false
-	length := len(a)
-	for i := length - 1; i >= 0; i-- {
-		if string(a[i]) == "0" && string(b[i]) == "1" ||
-			string(a[i]) == "1" && string(b[i]) == "0" {
+	res, carry, length := "", false, len(a)-1
+	for i := length; i >= 0; i-- {
+		if a[i] == '1' && b[i] == '1' {
 			if carry == true {
-				result = "0" + result
-				carry = true
+				res = "1" + res
 			} else {
-				result = "1" + result
-				carry = false
-			}
-		} else if string(a[i]) == "0" && string(b[i]) == "0" {
-			if carry == true {
-				result = "1" + result
-			} else {
-				result = "0" + result
-			}
-			carry = false
-		} else {
-			if carry == true {
-				result = "1" + result
-			} else {
-				result = "0" + result
+				res = "0" + res
 			}
 			carry = true
+		} else if a[i] == '1' && b[i] == '0' || a[i] == '0' && b[i] == '1' {
+			if carry == true {
+				res = "0" + res
+				carry = true
+			} else {
+				res = "1" + res
+				carry = false
+			}
+		} else {
+			if carry == true {
+				res = "1" + res
+			} else {
+				res = "0" + res
+			}
+			carry = false
 		}
 	}
 	if carry == true {
-		result = "1" + result
+		res = "1" + res
 	}
-
-	return result
+	return res
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
