@@ -1,4 +1,4 @@
-package merge
+package _8_merge
 
 func merge(nums1 []int, m int, nums2 []int, n int) {
 	sum := m + n
@@ -12,10 +12,8 @@ func merge(nums1 []int, m int, nums2 []int, n int) {
 		}
 		sum--
 	}
-
-	for n > 0 {
-		nums1[sum-1] = nums2[n-1]
+	for i := n; i > 0; i-- {
+		nums1[sum-1] = nums2[i-1]
 		sum--
-		n--
 	}
 }

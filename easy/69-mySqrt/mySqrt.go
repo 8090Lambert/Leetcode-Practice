@@ -1,4 +1,4 @@
-package mySqrt
+package _9_mySqrt
 
 func mySqrt(x int) int {
 	if x == 0 {

@@ -1,4 +1,4 @@
-package isSameTree
+package _00_isSameTree
 
 type TreeNode struct {
 	Val int
@@ -32,13 +32,10 @@ func isSameTreeLoop(p *TreeNode, q *TreeNode) bool {
 		q := stackq[0]
 		stackp = stackp[1:]
 		stackq = stackq[1:]
-		if !check(p, q) {
+		if !check(p, q) || !check(p.Left, q.Left) || !check(p.Right, q.Right) {
 			return false
 		}
 		if p != nil {
-			if !check(p.Left, q.Left) || !check(p.Right, q.Right){
-				return false
-			}
 			if p.Left != nil {
 				stackp = append(stackp, p.Left)
 				stackq = append(stackq, q.Left)

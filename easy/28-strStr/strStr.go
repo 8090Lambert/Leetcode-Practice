@@ -1,4 +1,22 @@
-package strStr
+package _8_strStr
+
+func strStr(haystack string, needle string) int {
+	hlength, nlength := len(haystack), len(needle)
+	if haystack == needle || nlength == 0 {
+		return 0
+	}
+	if hlength < nlength {
+		return -1
+	}
+	for i := 0; i <= hlength-nlength; i++ {
+		if haystack[i:i+nlength] == needle {
+			return i
+		}
+	}
+	return -1
+}
+
+
 
 func StrStr(haystack string, needle string) int {
 	sLength, nLength := len(haystack), len(needle)

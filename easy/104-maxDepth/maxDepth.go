@@ -1,4 +1,4 @@
-package maxDepth
+package _04_maxDepth
 
 import "math"
 

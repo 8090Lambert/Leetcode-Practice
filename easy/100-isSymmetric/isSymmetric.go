@@ -1,4 +1,4 @@
-package isSymmetric
+package _00_isSymmetric
 
 type TreeNode struct {
 	Val int
@@ -23,7 +23,7 @@ func isSymmetric(root *TreeNode) bool {
 	for len(stack) > 0 {
 		left := stack[0]
 		right := stack[1]
-		stack = append([]*TreeNode{}, stack[2:]...)
+		stack = stack[2:]
 		if left == nil && right == nil {
 			continue
 		} else if left == nil || right == nil {

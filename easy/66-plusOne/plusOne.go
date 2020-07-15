@@ -1,4 +1,4 @@
-package plusOne
+package _6_plusOne
 
 func PlusOne(digits []int) []int {
 	length := len(digits)

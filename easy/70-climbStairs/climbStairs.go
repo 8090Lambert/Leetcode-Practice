@@ -1,4 +1,4 @@
-package climbStairs
+package _0_climbStairs
 
 func ClimbStairs(n int) int {
 	if n == 1 {
@@ -10,7 +10,7 @@ func ClimbStairs(n int) int {
 	}
 }
 
-func climbStairs (n int) int {
+func climbStairs(n int) int {
 	if n == 1 {
 		return 1
 	} else if n == 2 {
@@ -23,4 +23,16 @@ func climbStairs (n int) int {
 		second = sum
 	}
 	return sum
+}
+
+func climbStairsRecursion(n int) int {
+	first, second := 1, 1
+	return climb(n, first, second)
+}
+
+func climb(n, f1, f2 int) int {
+	if n <= 1 {
+		return f2
+	}
+	return climb(n-1, f2, f1+f2)
 }

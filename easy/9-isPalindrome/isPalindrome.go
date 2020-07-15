@@ -11,16 +11,15 @@ func isPalindrome(x int) bool {
 	}
 	length := len(strconv.Itoa(x))
 	res, count := 0, length / 2
-	for count > 0 {
+	for i := 0; i < count; i++ {
 		res = res * 10 + x % 10
 		x /= 10
-		count--
 	}
 	if length & 1 == 1 {	// 奇数长度的中间位不要
-		x /= 10
+		return res == (x / 10)
+	} else {
+		return res == x
 	}
-
-	return res == x
 }
 
 // 回文字符串
