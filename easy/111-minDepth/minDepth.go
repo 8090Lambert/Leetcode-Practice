@@ -1,4 +1,4 @@
-package minDepth
+package _11_minDepth
 
 import "math"
 
@@ -36,4 +36,30 @@ func minDepthDFS(root *TreeNode) int {
 	} else {
 		return int(math.Min(float64(minDepth(root.Left)), float64(minDepth(root.Right)))) + 1
 	}
+}
+
+
+func minDepthBFS(root *TreeNode) int {
+	depth := 0
+	if root == nil {
+		return depth
+	}
+	stack := []*TreeNode{root}
+	for len(stack) > 0 {
+		depth += 1
+		count := len(stack)
+		for i := 0; i < count; i++ {
+			if stack[i].Left == nil && stack[i].Right == nil {
+				return depth
+			}
+			if stack[i].Left != nil {
+				stack = append(stack, stack[0].Left)
+			}
+			if stack[i].Right != nil {
+				stack = append(stack, stack[0].Right)
+			}
+		}
+		stack = stack[count:]
+	}
+	return depth
 }
