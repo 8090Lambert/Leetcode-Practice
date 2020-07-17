@@ -1,4 +1,4 @@
-package hasPathSum
+package _12_hasPathSum
 
 type TreeNode struct {
 	Val   int

@@ -1,4 +1,4 @@
-package maxProfit
+package _21_maxProfit
 
 func maxProfit(prices []int) int {
 	count := len(prices)
@@ -30,4 +30,18 @@ func maxProfit2(prices []int) int {
 		}
 	}
 	return earning
+}
+
+func maxProfit2Other(prices []int) int {
+	count := len(prices)
+	res := 0
+	if count == 0 || count == 1 {
+		return res
+	}
+	for i := 1; i < count; i++ {
+		if prices[i] > prices[i-1] {
+			res += prices[i] - prices[i-1]
+		}
+	}
+	return res
 }

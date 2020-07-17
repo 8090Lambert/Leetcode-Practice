@@ -1,4 +1,4 @@
-package getRow
+package _19_getRow
 
 func GetRow(rowIndex int) []int {
 	res := make([]int, 0)
@@ -23,23 +23,13 @@ func GetRow(rowIndex int) []int {
 	return res
 }
 
-func getRow(rowIndex int) []int {
-	res := make([]int, 0)
-	if rowIndex == 0 {
-		return append(res, 1)
-	}
-	
-	half := rowIndex / 2
-	for i := 0; i <= rowIndex; i++ {
-		if i == 0 {
-			res = append(res, 1)
-			continue
-		}
-		if i > half {
-			res = append(res, res[rowIndex-i])
-		} else {
-			tmp := 1 * res[i-1] * (rowIndex - (i-1)) / i
-			res = append(res, tmp)
+func getRow1(rowIndex int) []int {
+	res := make([]int, 0, rowIndex+1)
+	res = append(res, 1)
+	for i := 1; i <= rowIndex; i++ {
+		res = append(res, 1)
+		for j := i-1; j > 0; j-- {
+			res[j] += res[j-1]
 		}
 	}
 	return res
