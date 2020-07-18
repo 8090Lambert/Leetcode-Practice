@@ -1,4 +1,4 @@
-package getIntersectionNode
+package _60_getIntersectionNode
 
 type ListNode struct {
 	Val  int

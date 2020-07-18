@@ -1,4 +1,4 @@
-package singleNumber
+package _36_singleNumber
 
 func SingleNumber(nums []int) int {
 	a := 1

@@ -1,4 +1,4 @@
-package hasCycle
+package _41_hasCycle
 
 type ListNode struct {
 	Val  int

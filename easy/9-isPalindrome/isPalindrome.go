@@ -47,8 +47,7 @@ func isPalindromeString(s string) bool {
 	return true
 }
 
-func isValidString(cell uint8) bool {
-	b := byte(cell)
+func isValidString(b uint8) bool {
 	if b >= 'a' && b <= 'z' || b >= '0' && b <= '9' {
 		return true
 	}

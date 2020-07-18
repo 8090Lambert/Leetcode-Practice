@@ -1,4 +1,4 @@
-package countPrimes
+package _04_countPrimes
 
 func countPrimes (n int) int {
 	sum := make([]bool, n)
@@ -28,6 +28,22 @@ func countPrimes2 (n int) int {
 			continue
 		}
 		for j := i + i; j < n; j+=i {
+			sum[j] = true
+		}
+		count++
+	}
+	return count
+}
+
+
+func countPrimes1 (n int) int {
+	sum := make([]bool, n)
+	count := 0
+	for i := 2; i < n; i++ {
+		if sum[i] {
+			continue
+		}
+		for j := i; j < n; j+=i {
 			sum[j] = true
 		}
 		count++
