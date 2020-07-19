@@ -1,4 +1,4 @@
-package myStack
+package _25_myStack
 
 type MyStack struct {
 	Tail *Node

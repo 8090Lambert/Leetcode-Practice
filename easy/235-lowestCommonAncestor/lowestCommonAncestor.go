@@ -1,4 +1,4 @@
-package lowestCommonAncestor
+package _35_lowestCommonAncestor
 
 type TreeNode struct {
 	Val int

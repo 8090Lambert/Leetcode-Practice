@@ -1,4 +1,4 @@
-package invertTree
+package _26_invertTree
 
 type TreeNode struct {
 	Val int

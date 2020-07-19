@@ -77,7 +77,7 @@ func isPalindromeList (head *ListNode) bool {
 		stack = append(stack, slow)
 	}
 	slow = slow.Next
-	
+
 	mid := slow
 	for i := len(stack) - 1; i >= 0; i-- {
 		if mid.Val != stack[i].Val {
@@ -86,5 +86,34 @@ func isPalindromeList (head *ListNode) bool {
 		mid = mid.Next
 	}
 	
+	return true
+}
+
+
+func IsPalindromeList1(head *ListNode) bool {
+	if head == nil || head.Next == nil {
+		return true
+	}
+	slow, fast := head, head
+	for fast != nil && fast.Next != nil {
+		slow = slow.Next
+		fast = fast.Next.Next
+	}
+	var pre, cur *ListNode
+	cur = slow
+	for cur != nil {
+		tmp := cur.Next
+		cur.Next = pre
+		pre = cur
+		cur = tmp
+	}
+	mid := pre
+	for mid != nil {
+		if mid.Val != head.Val {
+			return false
+		}
+		mid = mid.Next
+		head = head.Next
+	}
 	return true
 }

@@ -1,4 +1,4 @@
-package reverseList
+package _06_reverseList
 
 type ListNode struct {
 	Val int
