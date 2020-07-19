@@ -1,6 +1,25 @@
-package convert
+package __convert
 
 import "strings"
+
+func convert(s string, numRows int) string {
+	if numRows <= 1 {
+		return s
+	}
+	b := []byte(s)
+	n := len(s)
+	cyc := 2 * numRows - 2
+	res := make([]string, numRows)
+	for i := 0; i < n; i++ {
+		var mod = i % cyc
+		if mod < numRows {
+			res[mod] += string(b[i])
+		} else {
+			res[cyc-mod] += string(b[i])
+		}
+	}
+	return strings.Join(res, "")
+}
 
 func Convert(s string, numRows int) string {
 	if numRows <= 1 {

@@ -1,7 +1,8 @@
-package myAtoi
+package __myAtoi
 
 import (
 	"fmt"
+	"math"
 	"strconv"
 	"strings"
 )
@@ -50,4 +51,36 @@ func isValid(s string) bool {
 		return true
 	}
 	return false
+}
+
+
+func myAtoi(str string) int {
+	min, max := int(math.Pow(-2, 31))-1, int(math.Pow(2, 31)) - 1
+	str = strings.TrimSpace(str)
+	count := len(str)
+	res, flag := 0, 1
+	if str[0] == '-' {
+		flag = -1
+	}
+	for i := 0; i < count; i++ {
+		if str[i] < '0' || str[i] > '9' {
+			if i == 0 && (str[i] == '-' || str[i] == '+') {
+				continue
+			} else {
+				break
+			}
+		} else {
+			int, _ := strconv.Atoi(string(str[i]))
+			if res > (max - int) / 10 {
+				if flag == 1 {
+					return max
+				} else {
+					return min
+				}
+			}
+			res = res * 10 + int
+		}
+	}
+
+	return res * flag
 }

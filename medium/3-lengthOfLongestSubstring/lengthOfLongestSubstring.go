@@ -1,4 +1,4 @@
-package lengthOfLongestSubstring
+package __lengthOfLongestSubstring
 
 import (
 	"math"
