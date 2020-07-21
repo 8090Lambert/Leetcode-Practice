@@ -1,4 +1,4 @@
-package removeNthFromEnd
+package _9_removeNthFromEnd
 
 type ListNode struct {
 	Val int
@@ -30,23 +30,19 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
 	return current
 }
 
-
-func removeNthFrom (head *ListNode, n int) *ListNode {
+func removeNthFromEnd1(head *ListNode, n int) *ListNode {
 	fast, slow := head, head
-	for n > 1 && fast.Next != nil {
+	for n > 1 && fast != nil {
 		fast = fast.Next
 		n--
 	}
-
 	if fast.Next == nil {
 		return slow.Next
 	}
-
 	for fast.Next.Next != nil {
-		fast = fast.Next
 		slow = slow.Next
+		fast = fast.Next
 	}
 	slow.Next = slow.Next.Next
-
 	return head
 }
