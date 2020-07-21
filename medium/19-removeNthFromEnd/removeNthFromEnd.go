@@ -29,3 +29,24 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
 	left.Next = left.Next.Next
 	return current
 }
+
+
+func removeNthFrom (head *ListNode, n int) *ListNode {
+	fast, slow := head, head
+	for n > 1 && fast.Next != nil {
+		fast = fast.Next
+		n--
+	}
+
+	if fast.Next == nil {
+		return slow.Next
+	}
+
+	for fast.Next.Next != nil {
+		fast = fast.Next
+		slow = slow.Next
+	}
+	slow.Next = slow.Next.Next
+
+	return head
+}
