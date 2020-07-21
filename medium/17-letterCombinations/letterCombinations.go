@@ -22,13 +22,9 @@ func LetterCombinations(digits string) []string {
 	return res
 }
 
-
-
-23
-res = [a,b,c]
 func letterCombinations(digits string) []string {
 	if len(digits) == 0 {
-		return nil
+		return []string{}
 	}
 	allMap := map[byte][]string{
 		'2':{"a","b","c"},'3':{"d","e","f"},'4':{"g","h","i"},'5':{"j","k","l"},
@@ -39,25 +35,10 @@ func letterCombinations(digits string) []string {
 		tmp := make([]string, 0)
 		for j := 0; j < len(res); j++ {
 			for k := 0; k < len(allMap[digits[i]]); k++ {
-				tmp = append(tmp, res[j]+allMap[digits[i]][k])
+				tmp = append(tmp, res[j] + allMap[digits[i]][k])
 			}
 		}
 		res = tmp
 	}
 	return res
-}
-
-
-
-
-
-
-
-func letterCombinations1(digits string) []string {
-	if len(digits) == 0 {
-		return []string{}
-	}
-	allMap := map[string][]string{
-		"a": {"a"},
-	}
 }

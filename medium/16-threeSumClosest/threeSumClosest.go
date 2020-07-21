@@ -47,20 +47,26 @@ func threeSumClosest1(nums []int, target int) int {
 		return nums[0] + nums[1] + nums[2]
 	}
 	res := nums[0] + nums[1] + nums[2]
-	for i := 0; i < count-1; i++ {
+	for i := 0; i < count; i++ {
+		if i > 0 && nums[i] == nums[i-1] {
+			continue
+		}
 		left := i + 1
-		right := count-1
+		right := count - 1
 		for left < right {
+			if left == right {
+				break
+			}
 			sum := nums[i] + nums[left] + nums[right]
 			if math.Abs(float64(target-sum)) < math.Abs(float64(target-res)) {
 				res = sum
 			}
 			if sum == target {
 				return target
-			} else if sum < target {
-				left++
-			} else {
+			} else if sum > target {
 				right--
+			} else {
+				left++
 			}
 		}
 	}

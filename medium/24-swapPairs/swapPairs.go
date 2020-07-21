@@ -17,7 +17,7 @@ func SwapPairs(head *ListNode) *ListNode {
 	return list
 }
 
-func swapPairs(head *ListNode) *ListNode {
+func SwapPairsLoop(head *ListNode) *ListNode {
 	pre := &ListNode{Next:head}
 	tmp := pre
 	for tmp.Next != nil && tmp.Next.Next != nil {
@@ -27,21 +27,7 @@ func swapPairs(head *ListNode) *ListNode {
 		start.Next = end.Next
 		end.Next = start
 		tmp = start
+		//tmp = tmp.Next.Next
 	}
-}
-
-
-func test (head *ListNode) *ListNode {
-	pre := &ListNode{Next:head}
-	tmp := pre
-	for tmp.Next != nil && tmp.Next.Next != nil {
-		start := tmp.Next
-		end := tmp.Next.Next
-		tmp.Next = end
-		start.Next = end.Next
-		end.Next = start
-		tmp = start
-	}
-
 	return pre.Next
 }

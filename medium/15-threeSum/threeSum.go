@@ -38,29 +38,27 @@ func ThreeSum(nums []int) [][]int {
 }
 
 func threeSum1(nums []int) [][]int {
+	sort.Ints(nums)
 	count := len(nums)
 	res := make([][]int, 0)
-	uniqMap := map[string]struct{}{}
 	for i := 0; i < count; i++ {
 		if i > 0 && nums[i] == nums[i-1] {
 			continue
 		}
-		left := i+1
 		right := count-1
-		for left < right {
-			sum := nums[i] + nums[left] + nums[right]
-			uniqKey := strconv.Itoa(nums[i]) + strconv.Itoa(nums[left]) + strconv.Itoa(nums[right])
-			if sum == 0 {
-				if _, ok := uniqMap[uniqKey]; !ok {
-					uniqMap[uniqKey] = struct{}{}
-					res = append(res, []int{nums[i], nums[left], nums[right]})
-				}
-				left++
+		target := 0 - nums[i]
+		for left := i+1; left < count; left++ {
+			if left > i+1 && nums[left] == nums[left-1] {
+				continue
+			}
+			for left < right && nums[left] + nums[right] > target {
 				right--
-			} else if sum > 0 {
-				right--
-			} else {
-				left++
+			}
+			if left == right {
+				break
+			}
+			if nums[left] + nums[right] == target {
+				res = append(res, []int{nums[i], nums[left], nums[right]})
 			}
 		}
 	}

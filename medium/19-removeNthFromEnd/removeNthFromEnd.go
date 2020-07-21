@@ -30,8 +30,8 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
 	return current
 }
 
-func removeNthFromEnd1(head *ListNode, n int) *ListNode {
-	fast, slow := head, head
+func RemoveNthFromEnd(head *ListNode, n int) *ListNode {
+	slow, fast := head, head
 	for n > 1 && fast != nil {
 		fast = fast.Next
 		n--
@@ -39,9 +39,10 @@ func removeNthFromEnd1(head *ListNode, n int) *ListNode {
 	if fast.Next == nil {
 		return slow.Next
 	}
+	
 	for fast.Next.Next != nil {
-		slow = slow.Next
 		fast = fast.Next
+		slow = slow.Next
 	}
 	slow.Next = slow.Next.Next
 	return head

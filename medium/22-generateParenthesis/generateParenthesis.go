@@ -20,50 +20,21 @@ func back(strArr *[]string, cur string, open, close, max int) {
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 func generateParenthesis(n int) []string {
-	res := make([]string, 0)
-	back2(&res, "", n, n)
-	return res
+	res := new([]string)
+	backDel(res, "", n, n)
+	return *res
 }
 
-func back1(res *[]string, cur string, o, c int) {
-	if c == 0 && o == 0{
-		*res = append(*res, cur)
+func backDel(res *[]string, tmp string, start, close int) {
+	if start == 0 && close == 0 {
+		*res = append(*res, tmp)
 		return
 	}
-	if o > 0 {
-		back1(res, cur + "(", o-1, c)
+	if start > 0 {
+		backDel(res, tmp+"(", start-1, close)
 	}
-	if c > o {
-		back1(res, cur + ")", o, c-1)
-	}
-}
-
-
-func back2(res *[]string, cur string, o, c int) {
-	if o == 0 && c == 0 {
-		*res = append(*res, cur)
-		return
-	}
-	if o > 0 {
-		back2(res, cur+"(", o-1, c)
-	}
-	if c > o {
-		back2(res, cur+")", o, c-1)
+	if close > start {
+		backDel(res, tmp+")", start, close-1)
 	}
 }
