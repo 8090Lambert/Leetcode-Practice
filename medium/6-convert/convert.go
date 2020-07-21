@@ -39,3 +39,29 @@ func Convert(s string, numRows int) string {
 	
 	return strings.Join(ret, "")
 }
+
+
+
+
+
+
+
+
+
+func convert1(s string, numRows int) string {
+	if numRows <= 1 {
+		return s
+	}
+	cyc := numRows * 2 - 2
+	count := len(s)
+	res := make([]string, numRows)
+	for i := 0; i < count; i++ {
+		var mod = i % cyc
+		if mod < numRows {
+			res[mod] += string(s[i])
+		} else {
+			res[cyc-mod] += string(s[i])
+		}
+	}
+	return strings.Join(res, "")
+}

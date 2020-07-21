@@ -41,3 +41,27 @@ func lengthOfLongestSubstringWithWindow(s string) int {
 	}
 	return res
 }
+
+
+
+
+
+
+
+
+func lengthOfLongestSubstring(s string) int {
+	if len(s) <= 1 {
+		return len(s)
+	}
+	count := len(s)
+	window := map[byte]int{}
+	start, res := 0, 0
+	for i := 0; i < count; i++ {
+		if _, ok := window[s[i]]; ok {
+			start = int(math.Max(float64(start), float64(window[s[i]])))
+		}
+		res = int(math.Max(float64(res), float64(i - start + 1)))
+		window[s[i]] = i+1
+	}
+	return res
+}

@@ -58,3 +58,34 @@ func extend(s string, l, r int) (int, int) {
 	}
 	return l + 1, r - 1
 }
+
+
+
+
+
+func longestPalindrome(s string) string {
+	count := len(s)
+	if count <= 1 {
+		return s
+	}
+	start, end := 0, 0
+	for i := 0; i < count; i++ {
+		l1, r1 := extend1(s, i, i)
+		l2, r2 := extend1(s, i, i+1)
+		if r1 - l1 > end - start {
+			start, end = l1, r1
+		}
+		if r2 - l2 > end - start {
+			start, end = l2, r2
+		}
+	}
+	return s[start:end+1]
+}
+
+func extend1(s string, l, r int) (int, int){
+	for l >= 0 && r < len(s) && s[l] == s[r] {
+		l--
+		r++
+	}
+	return l+1, r-1
+}
