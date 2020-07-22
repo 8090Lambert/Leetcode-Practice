@@ -35,7 +35,7 @@ func letterCombinations(digits string) []string {
 		tmp := make([]string, 0)
 		for j := 0; j < len(res); j++ {
 			for k := 0; k < len(allMap[digits[i]]); k++ {
-				tmp = append(tmp, res[j] + allMap[digits[i]][k])
+				tmp = append(tmp, res[j]+allMap[digits[i]][k])
 			}
 		}
 		res = tmp
