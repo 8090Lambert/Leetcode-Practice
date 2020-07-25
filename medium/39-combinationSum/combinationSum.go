@@ -1,4 +1,4 @@
-package combinationSum
+package _9_combinationSum
 
 import (
 	"sort"
@@ -33,19 +33,19 @@ func backtrack(candidates []int, target, i int, tmp []int) [][]int {
 
 func CombinationSum2(candidates []int, target int) [][]int {
 	sort.Ints(candidates)
-	uniqueMap := map[string]bool{}
+	uniqueMap := map[string]struct{}{}
 	collect := find2(candidates, 0, target, []int{}, uniqueMap)
 	return collect
 }
 
-func find2(candidates []int, start, target int, tmp []int, uniqueMap map[string]bool) [][]int {
+func find2(candidates []int, start, target int, tmp []int, uniqueMap map[string]struct{}) [][]int {
 	if target == 0 {
 		var str string
 		for _, value := range tmp {
 			str = str + strconv.Itoa(value) + ":"
 		}
 		if _, ok := uniqueMap[str]; !ok {
-			uniqueMap[str] = true
+			uniqueMap[str] = struct{}{}
 			return [][]int{tmp}
 		} else {
 			return nil
@@ -70,25 +70,22 @@ func find2(candidates []int, start, target int, tmp []int, uniqueMap map[string]
 	return res
 }
 
-
-func test (candidates []int, target int) [][]int {
+func combinationSum(candidates []int, target int) [][]int {
 	sort.Ints(candidates)
-	collect := [][]int{}
-	testFind(candidates, 0, target, []int{}, &collect)
-
+	collect := make([][]int, 0)
+	back(candidates, 0, target, []int{}, &collect)
 	return collect
 }
 
-func testFind (candidates []int, start,target int, tmp []int, res *[][]int) {
+func back(candidates []int, start, target int, item []int, res *[][]int) {
 	if target == 0 {
-		*res = append(*res, tmp)
+		*res = append(*res, item)
 		return
 	}
-
 	for i := start; i < len(candidates) && target >= candidates[i]; i++ {
-		temp := []int{}
-		temp = append(temp, tmp...)
+		temp := make([]int, 0, len(item)+1)
+		temp = append(temp, item...)
 		temp = append(temp, candidates[i])
-		testFind(candidates, i, target - candidates[i], temp, res)
+		back(candidates, i, target - candidates[i], temp, res)
 	}
 }

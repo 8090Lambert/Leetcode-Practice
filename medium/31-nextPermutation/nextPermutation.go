@@ -26,23 +26,19 @@ func reverse(nums *[]int, start int) {
 	}
 }
 
-
-
-
-
 func nextPermutation(nums []int)  {
-	left := len(nums)-2
-	for left >= 0 && nums[left] >= nums[left+1] {
-		left--
+	l := len(nums) - 2
+	for l >= 0 && nums[l] > nums[l+1] {
+		l--
 	}
-	if left >= 0 {
-		right := len(nums)-1
-		for right >= 0 && nums[left] >= nums[right] {
-			right--
+	if l >= 0 {
+		r := len(nums)-1
+		for r >= 0 && nums[l] >= nums[r] {
+			r--
 		}
-		nums[left], nums[right] = nums[right], nums[left]
+		nums[l], nums[r] = nums[r], nums[l]
 	}
-	reverse1(&nums, left+1)
+	reverse1(&nums, l+1)
 }
 
 func reverse1(nums *[]int, start int) {

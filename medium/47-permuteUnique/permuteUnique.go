@@ -1,4 +1,4 @@
-package permuteUnique
+package _7_permuteUnique
 
 func PermuteUnique(nums []int) [][]int {
 	res := [][]int{}

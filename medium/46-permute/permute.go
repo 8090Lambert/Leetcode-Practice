@@ -1,4 +1,4 @@
-package permute
+package _6_permute
 
 import "fmt"
 
@@ -44,5 +44,24 @@ func backTrack2 (nums []int, res *[][]int, start int) {
 		nums[i], nums[start] = nums[start], nums[i]
 		backTrack2(nums, res, start+1)
 		nums[start], nums[i] = nums[i], nums[start]
+	}
+}
+
+func permute(nums []int) [][]int {
+	res := make([][]int, 0)
+	back(nums, &res, 0)
+	return res
+}
+
+func back(nums []int, res *[][]int, start int) {
+	if start == len(nums) {
+		item := append([]int{}, nums...)
+		*res = append(*res, item)
+		return
+	}
+	for i := start; i < len(nums); i++ {
+		nums[i], nums[start] = nums[start], nums[i]
+		back(nums, res, start+1)
+		nums[i], nums[start] = nums[start], nums[i]
 	}
 }
