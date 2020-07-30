@@ -1,4 +1,4 @@
-package _83_rotate
+package _89_rotate
 
 func Rotate(nums []int, k int) {
 	count := len(nums)

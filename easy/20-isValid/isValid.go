@@ -13,10 +13,9 @@ func isValid(s string) bool {
 		if _, ok := match[s[i]]; !ok {
 			stack = append(stack, s[i])
 		} else {
-			if match[s[i]] != stack[len(stack)-1] {
-				return false
+			if len(stack) > 0 && match[s[i]] == stack[len(stack)-1] {
+				stack = stack[:len(stack)-1]
 			}
-			stack = stack[:len(stack)-1]
 		}
 	}
 	return len(stack) == 0

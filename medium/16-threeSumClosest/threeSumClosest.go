@@ -1,4 +1,4 @@
-package _6_threeSumClosest
+spackage _6_threeSumClosest
 
 import (
 	"math"
@@ -48,15 +48,9 @@ func threeSumClosest1(nums []int, target int) int {
 	}
 	res := nums[0] + nums[1] + nums[2]
 	for i := 0; i < count; i++ {
-		if i > 0 && nums[i] == nums[i-1] {
-			continue
-		}
 		left := i + 1
 		right := count - 1
 		for left < right {
-			if left == right {
-				break
-			}
 			sum := nums[i] + nums[left] + nums[right]
 			if math.Abs(float64(target-sum)) < math.Abs(float64(target-res)) {
 				res = sum

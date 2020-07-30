@@ -45,7 +45,7 @@ func deleteDuplicates(head *ListNode) *ListNode {
 	for fast != nil && fast.Next != nil {
 		if fast.Val == fast.Next.Val {
 			value := fast.Val
-			for fast != nil && fast.Val != value {
+			for fast != nil && fast.Val == value {
 				fast = fast.Next
 			}
 		} else {
@@ -54,5 +54,6 @@ func deleteDuplicates(head *ListNode) *ListNode {
 			fast = fast.Next
 		}
 	}
+	slow.Next = fast
 	return pre.Next
 }

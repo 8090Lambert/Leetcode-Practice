@@ -1,4 +1,4 @@
-package levelOrder
+package _02_levelOrder
 
 type TreeNode struct {
 	Val int
@@ -45,6 +45,23 @@ func backTrack(root *TreeNode, level int, res *[][]int) {
 		}
 		if root.Right != nil {
 			backTrack(root.Right, level+1, res)
+		}
+	}
+}
+
+
+
+func back(root *TreeNode, level int, res *[][]int) {
+	if root != nil {
+		if len(*res) == level {
+			*res = append(*res, []int{})
+		}
+		(*res)[level] = append((*res)[level], root.Val)
+		if root.Left != nil {
+			back(root.Left, level+1, res)
+		}
+		if root.Right != nil {
+			back(root.Right, level+1, res)
 		}
 	}
 }

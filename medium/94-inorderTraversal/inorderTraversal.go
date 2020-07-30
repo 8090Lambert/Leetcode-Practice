@@ -1,4 +1,4 @@
-package inorderTraversal
+package _4_inorderTraversal
 
 type TreeNode struct {
 	Val int
@@ -15,11 +15,11 @@ func inorderTraversal (root *TreeNode) []int {
 func backTrack (root *TreeNode, res *[]int) {
 	if root != nil {
 		if root.Left != nil {
-			*res = append(*res, root.Left.Val)
+			backTrack(root.Left, res)
 		}
 		*res = append(*res, root.Val)
 		if root.Right != nil {
-			*res = append(*res, root.Right.Val)
+			backTrack(root.Right, res)
 		}
 	}
 }
