@@ -1,4 +1,4 @@
-spackage _6_threeSumClosest
+package _6_threeSumClosest
 
 import (
 	"math"
