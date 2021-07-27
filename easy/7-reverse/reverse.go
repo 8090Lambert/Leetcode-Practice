@@ -1,19 +1,15 @@
 package __reverse
 
-import (
-	"math"
-)
-
 func reverse(x int) int {
-	intMin, intMax := int(math.Pow(-2, 31))-1, int(math.Pow(2, 31)) - 1
-	result := 0
+	min, max := -1 << 31, (1 << 31) - 1
+	res := 0
 	for x != 0 {
-		single := x % 10
-		if intMax - (result * 10) < single || intMin - (result * 10) > single {
+		end := res % 10
+		if max - end < res * 10 || min - end > res * 10 {
 			return 0
 		}
+		res = res * 10 + end
 		x /= 10
-		result = result * 10 + single
 	}
-	return result
+	return res
 }
