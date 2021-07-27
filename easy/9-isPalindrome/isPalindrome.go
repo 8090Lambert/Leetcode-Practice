@@ -117,3 +117,26 @@ func IsPalindromeList1(head *ListNode) bool {
 	}
 	return true
 }
+
+
+func isPalindromeNum(x int) bool {
+	if x < 0 {
+		return false
+	}
+	l := 0
+	xc := x
+	for xc > 0 {
+		xc /= 10
+		l++
+	}
+	res := 0
+	for i := 0; i < (l/2); i++ {
+		res = (res * 10) + (x % 10)
+		x /= 10
+	}
+	if l & 1 == 1 {
+		return res == (x/10)
+	} else {
+		return x == res
+	}
+}
