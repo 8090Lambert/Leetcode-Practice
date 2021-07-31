@@ -35,3 +35,36 @@ func removeElementMethod2(nums []int, val int) int {
 	}
 	return start
 }
+
+
+func removeElementMethod1(nums []int, val int) int {
+	count := len(nums)
+	if count == 0 {
+		return 0
+	}
+	prev := 0
+	for i := 0; i < count; i++ {
+		if nums[i] != val {
+			nums[prev] = nums[i]
+			prev++
+		}
+	}
+	return prev
+}
+
+func removeElementMethod3(nums []int, val int) int {
+	count := len(nums)
+	if count == 0 {
+		return 0
+	}
+	start, end := 0, count-1
+	for start <= end {
+		if nums[start] == val {
+			nums[start] = nums[end]
+			end--
+		} else {
+			start++
+		}
+	}
+	return start
+}
