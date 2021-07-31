@@ -47,3 +47,59 @@ func longestCommonPrefixOther(strs []string) string {
 	}
 	return prefix
 }
+
+
+func longestCommonPrefix1(strs []string) string {
+	if len(strs) == 0 {
+		return  ""
+	} else if len(strs) == 1 {
+		return strs[0]
+	}
+
+	isCommonPrefix := func (length int) bool {
+		str0, count := strs[0][:length], len(strs)
+		for i := 0; i < count; i++ {
+			if str0 != strs[i][:length] {
+				return false
+			}
+		}
+		return true
+	}
+	min := len(strs[0])
+	for i := 0; i < len(strs); i++ {
+		if len(strs[i]) < min {
+			min = len(strs[i])
+		}
+	}
+	start, end := 0, min
+	for start < end {
+		mid := (end - start + 1) / 2 + start
+		if isCommonPrefix(mid) {
+			start = mid
+		} else {
+			end = mid - 1
+		}
+	}
+	return strs[0][:start]
+}
+
+
+
+func longestCommonPrefix2(strs []string) string {
+	if len(strs) == 0 {
+		return ""
+	} else if len(strs) == 1 {
+		return strs[0]
+	}
+
+	prefix := strs[0]
+	for i := 0; i < len(strs); i++ {
+		for len(prefix) > 0 && !strings.HasPrefix(strs[i], prefix) {
+			prefix = prefix[:len(prefix)-1]
+			if prefix == "" {
+				return prefix
+			}
+		}
+	}
+	return prefix
+}
