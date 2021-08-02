@@ -1,6 +1,7 @@
 package _7_addBinary
 
 import (
+	"strconv"
 	"strings"
 )
 
@@ -43,4 +44,38 @@ func addBinary(a string, b string) string {
 		res = "1" + res
 	}
 	return res
+}
+
+
+func addBinaryOther(a string, b string) string {
+	lena := len(a)
+	lenb := len(b)
+	if lena - lenb < 0 {
+		a = strings.Repeat("0", lenb-lena) + a
+	} else {
+		b = strings.Repeat("0", lena-lenb) + b
+	}
+
+	var plus uint8 = 0
+	newStr := ""
+	for i := len(a)-1; i >= 0; i-- {
+		newStr = strconv.Itoa(int(a[i] ^ b[i] ^ plus)) + newStr
+		if a[i] ^ b[i] == 0 {
+			if a[i] == '1' && b[i] == '1' {
+				plus = 1
+			} else {
+				plus = 0
+			}
+		} else {
+			if plus == 1 {
+				plus = 1
+			} else {
+				plus = 0
+			}
+		}
+	}
+	if plus == 1 {
+		newStr = "1" + newStr
+	}
+	return newStr
 }

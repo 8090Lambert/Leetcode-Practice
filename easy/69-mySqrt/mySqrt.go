@@ -29,3 +29,15 @@ func mySqrtTwoSplit(x int) int {
 
 	return left
 }
+
+
+func mySqrtTwo(x int) int {
+	if x == 0 {
+		return 0
+	}
+	result := x
+	for result > x / result {
+		result = (result + x / result) / 2
+	}
+	return result
+}
