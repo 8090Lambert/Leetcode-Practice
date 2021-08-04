@@ -63,3 +63,16 @@ func check (p, q *TreeNode) bool {
 
 	return true
 }
+
+
+func isSameTreeOther(p *TreeNode, q *TreeNode) bool {
+	if p == nil && q == nil {
+		return true
+	}
+
+	if p != nil && q != nil && q.Val == p.Val {
+		return isSameTreeOther(q.Left, p.Left) && isSameTreeOther(q.Right, p.Right)
+	} else {
+		return false
+	}
+}
