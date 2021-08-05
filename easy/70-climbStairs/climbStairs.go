@@ -36,3 +36,17 @@ func climb(n, f1, f2 int) int {
 	}
 	return climb(n-1, f2, f1+f2)
 }
+
+
+func climbStairsLoopOther(n int) int {
+	if n <= 1 {
+		return 1
+	}
+	one, two, three := 1, 1, 0
+	for i := 2; i <= n; i++ {
+		three = one + two
+		one = two
+		two = three
+	}
+	return three
+}
