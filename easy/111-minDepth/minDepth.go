@@ -41,11 +41,11 @@ func minDepthDFS(root *TreeNode) int {
 
 func minDepthBFS(root *TreeNode) int {
 	depth := 0
-	if root == nil {
-		return depth
+	stack := make([]*TreeNode, 0)
+	if root != nil {
+		stack = append(stack, root)
 	}
-	stack := []*TreeNode{root}
-	for len(stack) > 0 {
+	for len(stack) != 0 {
 		depth += 1
 		count := len(stack)
 		for i := 0; i < count; i++ {
@@ -53,10 +53,10 @@ func minDepthBFS(root *TreeNode) int {
 				return depth
 			}
 			if stack[i].Left != nil {
-				stack = append(stack, stack[0].Left)
+				stack = append(stack, stack[i].Left)
 			}
 			if stack[i].Right != nil {
-				stack = append(stack, stack[0].Right)
+				stack = append(stack, stack[i].Right)
 			}
 		}
 		stack = stack[count:]

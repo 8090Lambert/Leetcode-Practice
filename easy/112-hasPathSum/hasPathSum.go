@@ -45,3 +45,34 @@ func hasPathSum1(root *TreeNode, sum int) bool {
 	}
 	return false
 }
+
+
+func hasPathSumLoop(root *TreeNode, targetSum int) bool {
+	if root == nil {
+		return false
+	}
+	stack := []*TreeNode{root}
+	iset := []int{targetSum}
+	for len(stack) != 0 {
+		count := len(stack)
+		for i := 0; i < count; i++ {
+			num := iset[i]
+			cur := stack[i]
+			if cur.Val == num && cur.Left == nil && cur.Right == nil {
+				return true
+			}
+			if cur.Left != nil {
+				stack = append(stack, cur.Left)
+				iset = append(iset, num - cur.Val)
+			}
+			if cur.Right != nil {
+				stack = append(stack, cur.Right)
+				iset = append(iset, num - cur.Val)
+			}
+		}
+		stack = append([]*TreeNode{}, stack[count:]...)
+		iset = append([]int{}, iset[count:]...)
+	}
+
+	return false
+}
