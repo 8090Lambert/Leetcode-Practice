@@ -24,7 +24,7 @@ func hasCycle(head *ListNode) bool {
 
 
 
-func hasCycle(head *ListNode) bool {
+func hasCycle1(head *ListNode) bool {
 	if head == nil || head.Next == nil {
 		return false
 	}
