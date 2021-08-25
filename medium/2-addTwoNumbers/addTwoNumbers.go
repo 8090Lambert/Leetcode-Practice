@@ -62,3 +62,51 @@ func addTwoNumbers1(l1 *ListNode, l2 *ListNode) *ListNode {
 	}
 	return pre.Next
 }
+
+func addTwoNumbers2(l1 *ListNode, l2 *ListNode) *ListNode {
+	new := new(ListNode)
+	cur := new
+	plus := 0
+	for l1 != nil && l2 != nil {
+		sum := l1.Val + l2.Val + plus
+		if sum > 9 {
+			sum %= 10
+			plus = 1
+		} else {
+			plus = 0
+		}
+		l1 = l1.Next
+		l2 = l2.Next
+		cur.Next = &ListNode{Val: sum}
+		cur = cur.Next
+	}
+	for l1 != nil {
+		sum := l1.Val + plus
+		l1 = l1.Next
+		if sum > 9 {
+			plus = 1
+			sum %= 10
+		} else {
+			plus = 0
+		}
+		cur.Next = &ListNode{Val: sum}
+		cur = cur.Next
+	}
+	for l2 != nil {
+		sum := l2.Val + plus
+		l2 = l2.Next
+		if sum > 9 {
+			plus = 1
+			sum %= 10
+		} else {
+			plus = 0
+		}
+		cur.Next = &ListNode{Val: sum}
+		cur = cur.Next
+	}
+	if plus == 1 {
+		cur.Next = &ListNode{Val: 1}
+	}
+
+	return new.Next
+}
