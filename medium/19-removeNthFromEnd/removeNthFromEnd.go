@@ -48,53 +48,33 @@ func RemoveNthFromEnd(head *ListNode, n int) *ListNode {
 	return head
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-func removeNthFromEnd1(head *ListNode, n int) *ListNode {
+func RemoveNthFromEndOther(head *ListNode, n int) *ListNode {
 	pre := new(ListNode)
 	pre.Next = head
-	slow, fast := pre, head
-	for n > 0 && fast != nil {
-		fast = fast.Next
-		n--
+	cur := head
+	for i := 0; i < n; i++ {
+		cur = cur.Next
 	}
+	slow, fast := pre, cur
 	for fast != nil {
-		slow = slow.Next
-		fast = fast.Next
+		slow, fast = slow.Next, fast.Next
 	}
 	slow.Next = slow.Next.Next
 	return pre.Next
 }
 
-func removeNthFromEnd2(head *ListNode, n int) *ListNode {
-
+func Remove(head *ListNode, n int) *ListNode {
+	slow, fast := head, head
+	for n > 0 && fast.Next != nil {
+		fast = fast.Next
+		n--
+	}
+	if n > 0 {
+		return slow.Next
+	}
+	for fast.Next != nil {
+		slow, fast = slow.Next, fast.Next
+	}
+	slow.Next = slow.Next.Next
+	return head
 }
