@@ -5,45 +5,22 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func ReverseBetween (head *ListNode, m, n int) *ListNode {
-	if m == n || head == nil {
+func reverseBetween(head *ListNode, left int, right int) *ListNode {
+	if left == right || head == nil || head.Next == nil {
 		return head
 	}
-
-	dummy := &ListNode{}
+	dummy := new(ListNode)
 	dummy.Next = head
-	prev := dummy
-	for i := 0; i < m - 1; i++ {
-		prev = prev.Next
+	pre := dummy
+	for i := 0; i < left-1; i++ {
+		pre = pre.Next
 	}
-
-	start := prev.Next
-	tail := start.Next
-	for i := 0; i < n - m; i++ {
-		start.Next = tail.Next
-		tail.Next = prev.Next
-		prev.Next = tail
-		tail = start.Next
-	}
-
-	return dummy.Next
-}
-
-func reverseBetween(head *ListNode, m int, n int) *ListNode {
-	if m == n || head == nil || head.Next == nil {
-		return head
-	}
-	dummy := &ListNode{Next:head}
-	prev := dummy
-	for i := 0; i < m-1; i++ {
-		prev = prev.Next
-	}
-	start, tail := prev.Next, prev.Next.Next
-	for i := 0; i < n-m; i++ {
-		start.Next = tail.Next
-		tail.Next = prev.Next
-		prev.Next = tail
-		tail = start.Next
+	cur, next := pre.Next, pre.Next.Next
+	for i := 0; i < right-left; i++ {
+		cur.Next = next.Next
+		next.Next = pre.Next
+		pre.Next = next
+		next = cur.Next
 	}
 	return dummy.Next
 }
