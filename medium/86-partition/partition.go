@@ -5,36 +5,6 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func Partition(head *ListNode, x int) *ListNode {
-	if head == nil {
-		return nil
-	}
-
-	before := &ListNode{}
-	beforeHead := before
-	after := &ListNode{}
-	afterHead := after
-	current := head
-	for current != nil {
-		if current.Val < x {
-			before.Next = current
-			before = before.Next
-		} else {
-			after.Next = current
-			after = after.Next
-		}
-		current = current.Next
-	}
-
-	before.Next = afterHead.Next
-	after.Next = nil
-
-	return beforeHead.Next
-}
-
-
-
-
 func partition(head *ListNode, x int) *ListNode {
 	if head == nil || head.Next == nil {
 		return head
@@ -55,4 +25,27 @@ func partition(head *ListNode, x int) *ListNode {
 	before.Next = afterHead.Next
 	after.Next = nil
 	return beforeHead.Next
+}
+
+func Partition(head *ListNode, x int) *ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+	left, right := new(ListNode), new(ListNode)
+	l, r := left, right
+	for head != nil {
+		if head.Val < x {
+			l.Next = head
+			l = l.Next
+		} else {
+			r.Next = head
+			r = r.Next
+		}
+		head = head.Next
+	}
+	l.Next = right.Next
+	if r != nil {
+		r.Next = nil
+	}
+	return left.Next
 }
