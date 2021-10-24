@@ -17,3 +17,24 @@ func MaxArea(height []int) int {
 	}
 	return max
 }
+
+
+
+
+func maxArea (height []int) int {
+	left, right := 0, len(height)-1
+	res := 0
+	for left < right {
+		minHeight := int(math.Min(float64(height[left]), float64(height[right])))
+		cur := minHeight * (right-left)
+		if cur > res {
+			res = cur
+		}
+		if height[left] > height[right] {
+			right--
+		} else {
+			left++
+		}
+	}
+	return res
+}
