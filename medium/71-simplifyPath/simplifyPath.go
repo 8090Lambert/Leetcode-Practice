@@ -25,21 +25,17 @@ func SimplifyPath(path string) string {
 }
 
 func simplifyPath(path string) string {
-	res := make([]string, 0)
-	arr := strings.Split(path, "/")
-	for i := 1; i < len(arr); i++ {
-		if arr[i] == "." || arr[i] == "" {
+	pathArr := strings.Split(path, "/")
+	res := make([]string, 0, len(pathArr))
+	for _, v := range pathArr {
+		if v == "." || v == "" {
 			continue
-		} else if arr[i] == ".." {
-			count := len(res)
-			if count == 0 {
-				res = []string{}
-			} else {
-				res = append([]string{}, res[:count-1]...)
+		}
+		if v == ".." {
+			if len(res) > 0 {
+				res = append([]string{}, res[:len(res)-1]...)
 			}
-		} else {
-			res = append(res, string(arr[i]))
 		}
 	}
-	return "/" + strings.Join(res, "/")
+	return "/"+strings.Join(res, "/")
 }
