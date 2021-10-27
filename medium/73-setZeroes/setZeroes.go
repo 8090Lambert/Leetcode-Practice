@@ -23,22 +23,21 @@ func SetZeroes(matrix [][]int)  {
 	}
 }
 
+
 func setZeroes(matrix [][]int)  {
 	row, col := len(matrix), len(matrix[0])
-	rowSet, colSet := map[int]int{}, map[int]int{}
+	rowSet, colSet := make([]bool, row), make([]bool, col)
 	for i := 0; i < row; i++ {
 		for j := 0; j < col; j++ {
 			if matrix[i][j] == 0 {
-				rowSet[i] = i
-				colSet[j] = j
+				rowSet[i] = true
+				colSet[j] = true
 			}
 		}
 	}
 	for i := 0; i < row; i++ {
 		for j := 0; j < col; j++ {
-			if _, ok := rowSet[i]; ok {
-				matrix[i][j] = 0
-			} else if _, ok := colSet[j]; ok {
+			if rowSet[i] || colSet[j] {
 				matrix[i][j] = 0
 			}
 		}
