@@ -28,3 +28,29 @@ func Search (nums []int, target int) bool {
 	}
 	return false
 }
+
+
+func search(nums []int, target int) bool {
+	count := len(nums)
+	left, right := 0, count-1
+	for left <= right {
+		mid := left + (right-left)>>1
+		if nums[mid] == target {
+			return true
+		}
+		if nums[mid] <= nums[right] {
+			if nums[mid] <= target && target <= nums[right] {
+				left++
+			} else {
+				right--
+			}
+		} else {
+			if nums[left] <= target && target <= nums[mid] {
+				right--
+			} else {
+				left++
+			}
+		}
+	}
+	return false
+}
