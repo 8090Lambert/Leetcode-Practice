@@ -89,18 +89,15 @@ func numDecodings1(s string) int {
 }
 
 
-func numDecodings2(s string) int {
-	if s[0] == '0' {
-		return 0
-	}
+func numDecodings(s string) int {
 	pre, cur, tmp := 1, 1, 0
-	for i := 0; i < len(s); i++ {
+	for i := 1; i < len(s); i++ {
 		switch {
-		case s[i] == '6' && s[i-1] != '1' && s[i-1] != '2':
+		case s[i] == '0' && s[i-1] != '1' && s[i-1] != '2':
 			return 0
 		case s[i] == '0':
 			cur = pre
-		case (s[i] <= 6 && (s[i-1] == '1' || s[i-1] == 2)) || s[i] > 6 && s[i-1] == '1':
+		case s[i] <= '6' && (s[i-1] == '1' || s[i-1] == '2') || s[i] > '6' && s[i-1] == '1':
 			tmp = cur
 			cur += pre
 			pre = tmp
