@@ -88,3 +88,27 @@ func compare(p, q *TreeNode) bool {
 
 	return true
 }
+
+func isSameTreeOther(p *TreeNode, q *TreeNode) bool {
+	if p == nil && q == nil {
+		return true
+	}
+	if p == nil || q == nil || p.Val != q.Val {
+		return false
+	}
+	stack := []*TreeNode{p, q}
+	for len(stack) != 0 {
+		l, r := stack[0], stack[1]
+		stack = stack[2:]
+		if !compare(l, r) || !compare(l.Left, r.Left) || !compare(l.Right, r.Right) {
+			return false
+		}
+		if l.Left != nil {
+			stack = append(stack, l.Left, r.Left)
+		}
+		if l.Right != nil {
+			stack = append(stack, l.Right, r.Right)
+		}
+	}
+	return len(stack) == 0
+}
