@@ -25,14 +25,15 @@ func BuildTree (nums []int, left, right int) *TreeNode {
 	return tree
 }
 
-func Build(nums []int, start, end int) *TreeNode {
-	if start > end {
+func sortedArrayToBSTReverse(nums []int) *TreeNode {
+	if len(nums) == 0 {
 		return nil
 	}
-	mid := start + (end - start) >> 1
-	root := &TreeNode{Val:nums[mid]}
-	root.Left = Build(nums, start, mid-1)
-	root.Right = Build(nums, mid+1, end)
+	l, r := 0, len(nums)-1
+	mid := l + (r-l) >> 1
+	root := &TreeNode{Val: nums[mid]}
+	root.Right = sortedArrayToBST(nums[mid+1:])
+	root.Left = sortedArrayToBST(nums[:mid])
 	return root
 }
 
