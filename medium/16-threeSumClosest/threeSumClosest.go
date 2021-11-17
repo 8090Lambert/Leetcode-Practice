@@ -63,3 +63,30 @@ func ThreeSumClosest(nums []int, target int) int {
 	}
 	return res
 }
+
+func threeSumClosest(nums []int, target int) int {
+	sort.Ints(nums)
+	count := len(nums)
+	res := 0
+	for i := 0; i < 3; i++ {
+		res += nums[i]
+	}
+	for i := 0; i < count; i++ {
+		left := i+1
+		right := count-1
+		for left < right {
+			sum := nums[i] + nums[left] + nums[right]
+			if int(math.Abs(float64(target-sum))) < int(math.Abs(float64(target-res))) {
+				res = sum
+			}
+			if sum == target {
+				return target
+			} else if sum < target {
+				left++
+			} else {
+				right--
+			}
+		}
+	}
+	return res
+}
