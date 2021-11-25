@@ -80,3 +80,21 @@ func height(node *TreeNode, isBalance *bool) int {
 
 	return int(math.Max(float64(leftHeight), float64(rightHeight))) + 1
 }
+
+
+
+func isBalanced(root *TreeNode) bool {
+	return h(root) >= 0
+}
+
+func h(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+	leftHeight := h(root.Left)
+	rightHeight := h(root.Right)
+	if leftHeight == -1 || rightHeight == -1 || int(math.Abs(float64(leftHeight-rightHeight))) > 1 {
+		return -1
+	}
+	return int(math.Max(float64(leftHeight), float64(rightHeight))) + 1
+}

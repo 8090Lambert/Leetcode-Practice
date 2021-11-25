@@ -59,8 +59,32 @@ func backTrack (root *TreeNode, res *[]int) {
 }
 
 func preorderTraversalMorris(root *TreeNode) []int {
-	var p1, p2 *TreeNode = root, nil
 	res := make([]int, 0)
+	for root != nil {
+		if root.Left != nil {
+			node := root.Left
+			for node.Right != nil && node.Right != root {
+				node = node.Right
+			}
+			if node.Right == nil {
+				res = append(res, root.Val)
+				node.Right = root
+				root = root.Left
+			} else {
+				node.Right = nil
+				root = root.Right
+			}
+		} else {
+			res = append(res, root.Val)
+			root = root.Right
+		}
+	}
+	return res
+}
+
+func preorderTraversalWithMorris(root *TreeNode) []int {
+	res := make([]int, 0)
+	var p1, p2 *TreeNode = root, nil
 	for p1 != nil {
 		p2 = p1.Left
 		if p2 != nil {
@@ -78,11 +102,9 @@ func preorderTraversalMorris(root *TreeNode) []int {
 		} else {
 			res = append(res, p1.Val)
 		}
-		p1 = p1.Right
 	}
 	return res
 }
-
 
 func preorderTraversal(root *TreeNode) []int {
 	res := make([]int, 0)

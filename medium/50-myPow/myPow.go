@@ -26,11 +26,10 @@ func myPow(x float64, n int) float64 {
 		x = 1/x
 		N = -N
 	}
-	res := 1.0
-	cur := x
-	for i := N; i > 0; i /= 2 {
-		if i % 2 == 1 {
-			res = res * cur
+	res, cur := 1.0, x
+	for ; N > 0; N /= 2 {
+		if N % 2 == 1 {
+			res *= cur
 		}
 		cur *= cur
 	}
