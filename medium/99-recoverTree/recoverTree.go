@@ -30,3 +30,41 @@ func recoverTree(root *TreeNode)  {
 	}
 	x.Val, y.Val = y.Val, x.Val
 }
+
+
+
+func recoverTreeMorris(root *TreeNode)  {
+	var pre, left, right *TreeNode
+	for root != nil {
+		if root.Left != nil {
+			node := root.Left
+			for node.Right != nil && node.Right != root {
+				node = node.Right
+			}
+			if node.Right == nil {
+				node.Right = root
+				root = root.Left
+			} else {
+				if pre != nil && root.Val <= pre.Val {
+					left = root
+					if right == nil {
+						right = pre
+					}
+				}
+				pre = root
+				node.Right = nil
+				root = root.Right
+			}
+		} else {
+			if pre != nil && root.Val <= pre.Val {
+				left = root
+				if right == nil {
+					right = pre
+				}
+			}
+			pre = root
+			root = root.Right
+		}
+	}
+	left.Val, right.Val = right.Val, left.Val
+}
