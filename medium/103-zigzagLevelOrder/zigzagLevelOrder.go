@@ -1,4 +1,5 @@
 package _03_zigzagLevelOrder
+import "C"
 
 type TreeNode struct {
 	Val int
@@ -68,6 +69,41 @@ func zigzagLevelOrder(root *TreeNode) [][]int {
 		}
 		level++
 		stack = tmp
+	}
+	return res
+}
+
+func zigzagLevelOrderOther(root *TreeNode) [][]int {
+	res := make([][]int, 0)
+	stack := make([]*TreeNode, 0)
+	if root != nil {
+		stack = append(stack, root)
+	}
+	order := 0
+	for len(stack) != 0 {
+		count := len(stack)
+		item := make([]int, 0, count)
+		for i := 0; i < count; i++ {
+			cur := stack[i]
+			item = append(item, cur.Val)
+			if cur.Left != nil {
+				stack = append(stack, cur.Left)
+			}
+			if cur.Right != nil {
+				stack = append(stack, cur.Right)
+			}
+		}
+		if order & 1 == 1 {
+			start, end := 0, count-1
+			for start <= end {
+				item[start], item[end] = item[end], item[start]
+				start++
+				end--
+			}
+		}
+		stack = stack[count:]
+		order ^= 1
+		res = append(res, item)
 	}
 	return res
 }
