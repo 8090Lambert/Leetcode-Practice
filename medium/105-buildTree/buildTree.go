@@ -34,9 +34,6 @@ func backTrackPre (preorder []int, preStart, preEnd int, inorder []int, inStart,
 }
 
 
-
-
-
 /**
 	后序遍历 + 中序遍历
  */
@@ -55,5 +52,39 @@ func backTrackPost (inorder []int, inStart, inEnd int, postorder []int, postStar
 	root.Left = backTrackPost(inorder, inStart, l-1, postorder, postStart, postStart + l - inStart - 1)
 	root.Right = backTrackPost(inorder, l+1, inEnd, postorder, postStart+l-inStart, postEnd-1)
 	
+	return root
+}
+
+
+func buildTreePre(preorder []int, inorder []int) *TreeNode {
+	if len(preorder) == 0 {
+		return nil
+	}
+	root := &TreeNode{preorder[0], nil, nil}
+	i := 0
+	for ; i < len(inorder); i++ {
+		if inorder[i] == root.Val {
+			break
+		}
+	}
+	root.Left = buildTreePre(preorder[1:len(inorder[:i])+1], inorder[:i])
+	root.Right = buildTreePre(preorder[len(inorder[:i])+1:], inorder[i+1:])
+	return root
+}
+
+
+func buildTreePost(inorder []int, postorder []int) *TreeNode {
+	if len(postorder) == 0 {
+		return nil
+	}
+	root := &TreeNode{postorder[len(postorder)-1], nil, nil}
+	i := 0
+	for ; i < len(inorder); i++ {
+		if root.Val == inorder[i] {
+			break
+		}
+	}
+	root.Left = buildTreePost(inorder[:i], postorder[:i])
+	root.Right = buildTreePost(inorder[i+1:], postorder[i:len(postorder)-1])
 	return root
 }
