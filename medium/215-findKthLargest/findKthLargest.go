@@ -22,6 +22,12 @@ func findKthLargest(nums []int, k int) int {
 	}
 }
 
+// x=0, j=0, [3,1,5,6,2,4]
+// i=1, j=1, [3,1,5,6,2,4]
+// i=2, j=1, [3,1,5,6,2,4]
+// i=3, j=1, ...
+// i=4, j=2, [3,1,2,6,5,4]
+// i=5, j=2
 func partition(nums []int, left, right int) int {
 	if left < right {
 		randPos := rand.Int() % (right-left) + left + 1
