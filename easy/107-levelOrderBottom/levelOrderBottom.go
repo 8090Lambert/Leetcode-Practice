@@ -6,32 +6,6 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-func LevelOrderBottom(root *TreeNode) [][]int {
-	result := make([][]int, 0)
-	if root == nil {
-		return result
-	}
-	stack := []*TreeNode{root}
-	for len(stack) > 0{
-		tmp := make([]*TreeNode, 0)
-		each := make([]int, 0)
-		for _, val := range stack {
-			if val.Left != nil {
-				tmp = append(tmp, val.Left)
-			}
-			if val.Right != nil {
-				tmp = append(tmp, val.Right)
-			}
-			each = append(each, val.Val)
-		}
-		stack = tmp
-		result = append([][]int{each}, result...)
-	}
-	
-	return result
-}
-
-
 func levelOrderBottom(root *TreeNode) [][]int {
 	res := make([][]int, 0)
 	if root == nil {
@@ -53,6 +27,37 @@ func levelOrderBottom(root *TreeNode) [][]int {
 		}
 		stack = levels
 		res = append([][]int{item}, res...)
+	}
+	return res
+}
+
+func levelOrderBottomOther(root *TreeNode) [][]int {
+	res := make([][]int, 0)
+	stack := make([]*TreeNode, 0)
+	if root != nil {
+		stack = append(stack, root)
+	}
+	for len(stack) != 0 {
+		count := len(stack)
+		item := make([]int, 0, count)
+		for i := 0; i < count; i++ {
+			cur := stack[i]
+			item = append(item, cur.Val)
+			if cur.Left != nil {
+				stack = append(stack, cur.Left)
+			}
+			if cur.Right != nil {
+				stack = append(stack, cur.Right)
+			}
+		}
+		res = append(res, item)
+		stack = stack[count:]
+	}
+	start, end := 0, len(res)-1
+	for start < end {
+		res[start], res[end] = res[end], res[start]
+		start++
+		end--
 	}
 	return res
 }
