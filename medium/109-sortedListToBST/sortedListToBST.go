@@ -35,8 +35,6 @@ func buildTree(nums []int) *TreeNode {
 	return root
 }
 
-
-
 func sortedListToBST(head *ListNode) *TreeNode {
 	return buildWithList(head, nil)
 }

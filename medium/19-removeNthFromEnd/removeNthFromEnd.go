@@ -78,3 +78,18 @@ func Remove(head *ListNode, n int) *ListNode {
 	slow.Next = slow.Next.Next
 	return head
 }
+
+func removeNthFromEndOther(head *ListNode, n int) *ListNode {
+	dummy := new(ListNode)
+	dummy.Next = head
+	cur := dummy
+	for i := 0; i < n; i++ {
+		cur = cur.Next
+	}
+	pre := dummy
+	for cur.Next != nil {
+		pre, cur = pre.Next, cur.Next
+	}
+	pre.Next = pre.Next.Next
+	return dummy.Next
+}
